@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct queue {
+   int size;
+   int f;
+   int r;
+   int *arr;
+   
+};
+int isempty(struct queue *q)
+{
+    if(q->f==q->r)
+    return 1;
+    else
+    return 0;
+    
+}
+int isfull(struct queue *q)
+{
+    if(q->r==q->size-1)
+    return 1;
+    else
+    return 0;
+    
+}
+void push(struct queue *q,int x)
+{
+    if(isfull(q))
+    printf("queue is full");
+    if(q->f==-1&&q->r==-1)
+    {
+        q->f++;
+       q->r++;
+       q->arr[q->r]=x; 
+    }
+    ///
+    
+    else
+    {
+       q->r++;
+       q->arr[q->r]=x;
+    }
+}
+ int pop(struct queue *q)
+ {
+     int a=-1;
+     if(isempty(q))
+     {
+         printf("queue is empty");
+         
+     }
+     else
+     {
+         a=q->arr[q->f];
+         q->f++;
+     }
+     return a;
+ }
+int main()
+{
+    
+struct queue *q=(struct queue*)malloc(sizeof(struct queue));
+    q->size=2;
+    
+   q->f=-1;
+   q->r=-1;
+   q->arr=(int*)malloc(q->size*(sizeof(int)));
+   
+   if(isempty(q))
+   push(q,63);
+   push(q,67);
+   push(q,63);
+   printf("%d",q->arr[q->r]);
+  
+}
